@@ -7,26 +7,40 @@ body {
 }
 h1 { color: #F7943D; }
 .hero {
-  background: #F7943D;
-  color: #fff;
+  background: var(--brand); /* 黒背景 */
+  color: var(--ink);        /* 白文字 */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 80px 120px;
 }
-.hero-content { max-width: 50%; }
-.hero-content h1 { font-size: 48px; margin: 0 0 24px; }
-.hero-content p  { font-size: 18px; margin: 0 0 32px; }
+
+.hero-content h1 {
+  font-size: 48px;
+  margin: 0 0 24px;
+  color: var(--ink); /* 白文字に統一 */
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin: 0 0 32px;
+  color: var(--ink); /* 白文字に統一 */
+}
 .btn {
-  background: #fff;
-  color: #F7943D;
+  background: var(--brand); /* ゴールドを設定 */
+  color: #fff; /* 白文字でコントラスト強調 */
   padding: 12px 32px;
   border-radius: 999px;
   font-weight: bold;
   text-decoration: none;
   transition: .25s;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5); /* 黒背景でも立体感を演出 */
 }
-.btn:hover { background: #F2994A; color: #fff; }
+
+.btn:hover {
+  background: #d4af37; /* 少し明るいゴールドにしてホバー感 */
+  color: #000; /* 黒文字にしてコントラストを逆転 */
+}
 .hero-image img { width: 400px; border-radius: 20px; display: block; }
 /* ヒーロー内の文字色を白で上書き */
 .hero h1,
@@ -171,11 +185,16 @@ h1 { color: #F7943D; }
 
 /* 各カード */
 .feature {
-  background: #fff;
+  background: #111; /* 真っ黒背景 */
+  color: #fff; /* 白文字 */
+  border: 1px solid #333; /* 薄いグレー枠 */
   border-radius: 16px;
-  padding: 24px 20px;
-  text-align: left;               /* 文字は左寄せ */
-  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+}
+
+.feature h3, .feature svg {
+  color: #d4af37; /* ゴールド */
 }
 
 /* アイコン */
@@ -390,17 +409,17 @@ h1 { color: #F7943D; }
   box-shadow: 0 10px 28px rgba(0,0,0,.1);
 }
 /* ========== 共通：テーマ変数（未設定なら追加） ========== */
-:root{
-  --brand: #f3923b;
-  --brand-600: #e07f23;
-  --ink: #222;
-  --muted: #666;
-  --card-bg: #fff;
-  --card-shadow: 0 10px 24px rgba(0,0,0,.08);
+:root {
+  --brand: #000000;      /* メインの黒 */
+  --brand-600: #111111;  /* 濃淡をつけた黒 */
+  --ink: #ffffff;        /* 白文字 */
+  --accent: #FFD700;     /* ゴールド（ボタンやリンクの差し色） */
+  --muted: #aaa;         /* グレーの補助文字 */
+  --card-bg: #1a1a1a;    /* カードの背景（黒より少し明るい） */
+  --card-shadow: 0 10px 24px rgba(0,0,0,.6);
   --radius-xl: 18px;
   --ease: cubic-bezier(.2,.8,.2,1);
 }
-
 /* ========== 特徴カードの磨き込み ========== */
 .cards{
   display: grid;
@@ -478,33 +497,36 @@ section.contact{
   gap: clamp(16px, 3vw, 28px);
 }
 
-.plan{
+.plan {
   position: relative;
-  background: var(--card-bg);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--card-shadow);
+  background: #111; /* 黒ベース */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.8);
   padding: clamp(20px, 3.2vw, 28px);
   display: grid;
   gap: 14px;
-  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  color: #fff; /* 白文字 */
+  border: 1px solid #333;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 
-.plan:hover{
+.plan:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0,0,0,.12);
+  box-shadow: 0 16px 32px rgba(212,175,55,0.4); /* ゴールドの光 */
+  border: 1px solid #d4af37; /* ゴールドアクセント */
 }
 
-.plan-title{
+.plan-title {
   margin: 0;
   font-size: clamp(18px, 2.4vw, 20px);
-  color: var(--ink);
+  color: #d4af37; /* ゴールドタイトル */
 }
 
-.plan-price{
+.plan-price {
   margin: 4px 0 10px;
   font-size: clamp(28px, 4.5vw, 36px);
-  font-weight: 800;
-  color: var(--brand);
+  font-weight: bold;
+  color: #d4af37; /* ゴールド価格 */
 }
 .plan-price span{
   font-size: .5em;
